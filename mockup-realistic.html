@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Realistic Office Dashboard Mockup</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    /* Realistic bright office background */
+    background: 
+      linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.95)),
+      url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000') center/cover fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+  }
+
+  .showcase-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 3rem;
+    padding-bottom: 5rem;
+    position: relative;
+  }
+
+  /* Desk Reflection/Glow */
+  .desk-glow {
+    position: absolute;
+    bottom: 20px;
+    width: 1000px;
+    height: 100px;
+    background: radial-gradient(ellipse at center, rgba(0, 122, 255, 0.15) 0%, rgba(255,255,255,0) 70%);
+    z-index: 0;
+  }
+
+  /* Shared screen styles */
+  .screen {
+    background-color: #000;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 10;
+  }
+  
+  /* Tablet / iPad */
+  .device-tablet {
+    width: 340px;
+    height: 480px;
+    border: 18px solid #111;
+    border-radius: 24px;
+    background-image: url('screenshot-tablet.png');
+    box-shadow: -10px 20px 40px rgba(0, 0, 0, 0.2), inset 0 0 0 1px #333;
+    margin-bottom: 1rem; /* Lift slightly off desk */
+  }
+
+  /* Desktop Monitor */
+  .monitor-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 15;
+  }
+  .device-monitor {
+    width: 850px;
+    height: 480px;
+    border: 14px solid #111;
+    border-bottom-width: 24px;
+    border-radius: 12px;
+    background-image: url('screenshot-desktop.png');
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), inset 0 0 0 1px #333;
+  }
+  /* Monitor Stand */
+  .monitor-stand-neck {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(to right, #d0d0d0, #f5f5f5, #d0d0d0);
+    box-shadow: inset 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 5;
+  }
+  .monitor-stand-base {
+    width: 260px;
+    height: 12px;
+    background: linear-gradient(to bottom, #f0f0f0, #ccc);
+    border-radius: 10px 10px 0 0;
+    z-index: 6;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+
+  /* Mobile / iPhone */
+  .device-mobile {
+    width: 200px;
+    height: 420px;
+    border: 14px solid #111;
+    border-radius: 36px;
+    background-image: url('screenshot-mobile.png');
+    box-shadow: 10px 20px 40px rgba(0, 0, 0, 0.2), inset 0 0 0 1px #333;
+    margin-bottom: 0.5rem;
+  }
+  /* Mobile Notch */
+  .mobile-notch {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 20px;
+    background: #111;
+    border-radius: 12px;
+  }
+
+  /* Labels (Like your reference image) */
+  .label {
+    position: absolute;
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
+    pointer-events: none;
+  }
+  .label-desktop {
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .label-tablet {
+    top: -80px;
+    left: 170px;
+  }
+  .label-mobile {
+    bottom: -60px;
+    right: 100px;
+  }
+</style>
+</head>
+<body>
+  <div class="showcase-container">
+    <div class="desk-glow"></div>
+    
+    <!-- Left: Tablet -->
+    <div style="position: relative;">
+      <div class="label label-tablet">Tablet<br><span style="font-size: 0.9rem; color: #666;">(Vertical Breakpoint)</span></div>
+      <div class="screen device-tablet"></div>
+    </div>
+    
+    <!-- Center: Desktop Monitor -->
+    <div class="monitor-wrapper">
+      <div class="label label-desktop">Full Desktop</div>
+      <div class="screen device-monitor"></div>
+      <div class="monitor-stand-neck"></div>
+      <div class="monitor-stand-base"></div>
+    </div>
+
+    <!-- Right: Mobile -->
+    <div style="position: relative;">
+      <div class="screen device-mobile">
+        <div class="mobile-notch"></div>
+      </div>
+      <div class="label label-mobile">Mobile<br><span style="font-size: 0.9rem; color: #666;">(Reflowed Stream)</span></div>
+    </div>
+  </div>
+</body>
+</html>
