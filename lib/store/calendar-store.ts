@@ -38,6 +38,7 @@ const generateInitialEvents = (): CalendarEvent[] => {
       title: faker.company.catchPhrase(),
       type: faker.helpers.arrayElement(['meeting', 'deadline', 'task', 'event']),
       start: start.toISOString(),
+      end: end.toISOString(),
       description: faker.helpers.arrayElement([
         'Architecture review for multi-tenant schema partitioning and sharding.',
         'Bi-weekly sprint backlog grooming and velocity tracking.',

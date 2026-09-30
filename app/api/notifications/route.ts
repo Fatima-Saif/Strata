@@ -50,11 +50,11 @@ export async function GET() {
       });
     }
 
-    const unreadCount = notifications.filter((n) => !n.read).length;
+    const unreadCount = notifications.filter((n: any) => !n.read).length;
 
     return NextResponse.json({
       success: true,
-      notifications: notifications.map((n) => ({
+      notifications: notifications.map((n: any) => ({
         id: n.id,
         title: n.title,
         description: n.description,

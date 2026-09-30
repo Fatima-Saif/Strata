@@ -94,14 +94,14 @@ export function Topbar() {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem asChild>
-              <a href="/settings" className="cursor-pointer">Settings</a>
+            <DropdownMenuItem onClick={() => window.location.href = '/settings'}>
+              Settings
             </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <a href="/revenue" className="cursor-pointer">Billing</a>
+            <DropdownMenuItem onClick={() => window.location.href = '/revenue'}>
+              Billing
             </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <a href="/help" className="cursor-pointer">Support & Docs</a>
+            <DropdownMenuItem onClick={() => window.location.href = '/help'}>
+              Support & Docs
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem 

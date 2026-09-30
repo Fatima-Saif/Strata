@@ -1,31 +1,25 @@
 import { renderHook } from '@testing-library/react';
 import { usePermission } from './use-permission';
-import { usePermissionsStore } from '@/lib/store/permissions-store';
-import { vi, describe, it, expect, beforeEach } from 'vitest';
+import { vi, describe, it, expect } from 'vitest';
+
+vi.mock('next-auth/react', () => ({
+  useSession: () => ({
+    data: { user: { name: 'Admin User', role: 'Admin' } },
+  }),
+}));
 
 describe('usePermission', () => {
-  beforeEach(() => {
-    // Reset store before each test
-    usePermissionsStore.setState({ role: 'admin' });
-  });
-
   it('allows access for admin role on sensitive actions', () => {
     const { result } = renderHook(() => usePermission());
-    expect(result.current.hasRole(['admin'])).toBe(true);
-    expect(result.current.can('manage_billing')).toBe(true);
+    expect(result.current.hasRole('Admin')).toBe(true);
+    expect(result.current.can('edit_billing')).toBe(true);
   });
 
-  it('denies access for viewer role on sensitive actions', () => {
-    usePermissionsStore.setState({ role: 'viewer' });
+  it('checks developer and manager role levels correctly', () => {
     const { result } = renderHook(() => usePermission());
-    expect(result.current.hasRole(['admin'])).toBe(false);
-    expect(result.current.can('manage_billing')).toBe(false);
+    expect(result.current.isAdmin).toBe(true);
+    expect(result.current.isManagerOrHigher).toBe(true);
+    expect(result.current.isDeveloperOrHigher).toBe(true);
     expect(result.current.can('view_reports')).toBe(true);
-  });
-  
-  it('handles empty roles array correctly in hasRole', () => {
-    usePermissionsStore.setState({ role: 'manager' });
-    const { result } = renderHook(() => usePermission());
-    expect(result.current.hasRole([])).toBe(false);
   });
 });

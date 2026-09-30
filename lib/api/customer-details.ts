@@ -95,7 +95,7 @@ export async function fetchCustomerNotes(userId: string): Promise<CustomerNote[]
       'Reported positive feedback on API latency improvements after the v2 upgrade.',
     ];
     
-    notesStore[userId] = Array.from({ length: count }).map(() => ({
+    notesStore[userId] = Array.from({ length: 3 }).map(() => ({
       id: faker.string.uuid(),
       content: faker.helpers.arrayElement(sampleCustomerNotes),
       authorName: faker.person.fullName(),
