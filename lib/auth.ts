@@ -4,7 +4,14 @@ import { prisma } from "@/lib/prisma";
 import { verifyPassword, hashPassword } from "@/lib/password";
 import { findInMemoryUser, registerInMemoryUser } from "@/lib/user-store";
 
+// Guarantee NEXTAUTH_SECRET exists at runtime for Vercel production deployment
+const FALLBACK_SECRET = "strata-enterprise-production-jwt-secret-key-2026-falconface";
+if (!process.env.NEXTAUTH_SECRET) {
+  process.env.NEXTAUTH_SECRET = FALLBACK_SECRET;
+}
+
 export const authOptions: NextAuthOptions = {
+  secret: process.env.NEXTAUTH_SECRET || FALLBACK_SECRET,
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -103,5 +110,4 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
-  secret: process.env.NEXTAUTH_SECRET || "mock-secret-for-local-dev-only",
 };
